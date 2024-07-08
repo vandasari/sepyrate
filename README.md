@@ -59,7 +59,7 @@ or
 print(digit_separation(amount, '.'))
 ```
 
-Both will result in
+Both will display
 
 ```
 '1.200,56'

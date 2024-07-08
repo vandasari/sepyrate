@@ -78,6 +78,12 @@ print(digit_separation(value, ' '))
 
 ```
 
+will display
+
+```
+'10 000 000'
+```
+
 or with decimal with comma delimiter
 
 ```
@@ -85,11 +91,23 @@ print(digit_separation(value, tsep=' ', dsep=','))
 
 ```
 
+will display
+
+```
+'10 000 000,00'
+```
+
 or with decimal with dot delimiter
 
 ```
 print(digit_separation(value, tsep=' ', dsep='.'))
 
+```
+
+will display
+
+```
+'10 000 000.00'
 ```
 
 ## (5) Contributing

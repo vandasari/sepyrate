@@ -1,6 +1,6 @@
 # Sepyrate
 
-Sepyrate is a Python library to display digits separated into groups of thousands and decimal using delimiters such as comma (`","`), dot (`"."`), space (`" "`), or apostrophe (`"'"`).
+Sepyrate is a simple and lightweight Python library to display digits separated into groups of thousands and decimal using delimiters such as comma (`","`), dot (`"."`), space (`" "`), or apostrophe (`"'"`). For example, to display `12879.45` in styles such as `12.879,45` or `12,879.45` or `12 879.45` and so on. This library could be useful for displaying currency of countries that use other than comma for thousands separator in frameworks like Django, Flask, etc.
 
 ## (1) Installation
 
@@ -110,6 +110,6 @@ will display
 '10 000 000.00'
 ```
 
-## (5) Contributing
+## (4) Contributing
 
 Interested in contributing? Please contact me directly.

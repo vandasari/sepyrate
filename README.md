@@ -26,7 +26,8 @@ The primary function is `digit_separation()`. It accepts the following arguments
 
 The function returns string of digits.
 
-**Supported Separator Combinations**
+## (4) Supported Separator Combinations
+
 Following [Wikipedia](https://en.wikipedia.org/wiki/Decimal_separator#Examples_of_use) standards:
 
 | `tsep` (Thousands) | Supported `dsep` (Decimal) |
@@ -38,18 +39,18 @@ Following [Wikipedia](https://en.wikipedia.org/wiki/Decimal_separator#Examples_o
 
 Note: he Indian numbering system (e.g., `1,00,000`) is not currently supported but is planned for a future release.
 
-**Examples**
+## (5) Examples
 
-To use, import the function:
+### To use, import the function:
 
 ```
 from sepyrate import digit_separation
 ```
 
-Formatting Floating-Point Numbers
+### Formatting Floating-Point Numbers, numpy.float32, or numpy.float64:
 
 ```
-amount = 1200.56
+amount = 1200.56 # or amount = np.float64(1200.56)
 
 # Using a dot for thousands and a comma for decimals
 print(digit_separation(amount, tsep='.', dsep=',')) # Output: '1.200,56'
@@ -58,7 +59,7 @@ print(digit_separation(amount, tsep='.', dsep=',')) # Output: '1.200,56'
 print(digit_separation(amount, tsep='.'))           # Output: '1.200,56'
 ```
 
-Formatting Integers
+### Formatting Integers
 
 ```
 value = 10000000
@@ -73,7 +74,7 @@ print(digit_separation(value, tsep=' ', dsep=','))  # Output: '10 000 000,00'
 print(digit_separation(value, tsep=' ', dsep='.'))  # Output: '10 000 000.00'
 ```
 
-Django Usage
+### Django Usage
 
 In `models.py`:
 

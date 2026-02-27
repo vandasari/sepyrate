@@ -10,7 +10,7 @@ authors = [
 ]
 description = "Sepyrate is a lightweight Python library for formatting numbers with custom thousands and decimal separators."
 readme = "README.md"
-license = {file = "LICENSE"}
+license = "MIT"
 keywords = ["digit grouping", "decimal separator", "thousands separator"]
 requires-python = ">=3.9"
 classifiers = [

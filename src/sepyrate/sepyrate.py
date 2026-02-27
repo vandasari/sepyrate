@@ -1,96 +1,22 @@
+from decimal import Decimal
+
 
 def digit_separation(amount, tsep, dsep=None):
-    
-    valint = int(str(amount).split('.')[0])
-    temp = f'{valint:,}'
-    
-    if type(amount) == float:        
-        valdec = str(amount).split('.')[1]
-          
-        if tsep == ',':
-            if dsep is None or dsep == '.':
-                return '.'.join([temp, valdec])
-            else:
-                raise ValueError("Unknown decimal separator for tsep=','!")
-        
-        elif tsep == '.':
-            res = temp.replace(',', '.')
-            if dsep is None or dsep == ',':                
-                return ','.join([res, valdec])
-            elif dsep == "'":
-                return dsep.join([res, valdec])
-            else:
-                raise ValueError("Unkown decimal separator for tsep='.'!")
-        
-        elif tsep == ' ':
-            res = temp.replace(',', ' ')
-            if dsep is None or dsep == '.':                
-                return '.'.join([res, valdec])
-            elif dsep == ',':
-                return dsep.join([res, valdec])
-            else:
-                raise ValueError("Unknown decimal separator for tsep=' '!")
-        
-        elif tsep == "'":
-            res = temp.replace(",", "'")
-            if dsep is None or dsep == '.':
-                return '.'.join([res, valdec])
-            elif dsep == ',':
-                return dsep.join([res, valdec])
-            else:
-                msg = f"Unknown decimal separator dsep='{dsep}'"
-                raise ValueError(msg)
-                
-            
-    elif type(amount) == int:
-        
-        if tsep == ',':
-            if dsep is None:
-                return temp
-            elif dsep == '.':
-                res = f'{amount:,.2f}'
-                return res.replace(',','*').replace('.', '.').replace('*',',')
-            else:
-                raise ValueError("Unknown decimal separator for tsep=','!")
-                
-            
-        elif tsep == '.':
-            if dsep is None:
-                return temp.replace(',', '.')
-            elif dsep == ',':
-                res = f'{amount:,.2f}'
-                return res.replace(',','*').replace('.', ',').replace('*','.')
-            else:
-                raise ValueError("Unkown decimal separator for tsep='.'!")
-        
-        elif tsep == ' ':
-            if dsep is None:
-                return temp.replace(',', ' ')
-            elif dsep == '.':
-                res = f'{amount:,.2f}'
-                return res.replace(',','*').replace('.', '.').replace('*',' ')
-            elif dsep == ',':
-                res = f'{amount:,.2f}'
-                return res.replace(',','*').replace('.', ',').replace('*',' ')
-            else:
-                raise ValueError("Unknown decimal separator for tsep=' '!")
-                
-        elif tsep == "'":
-            if dsep is None:
-                return temp.replace(",", "'")
-            elif dsep == '.':
-                res = f'{amount:,.2f}'
-                return res.replace(',','*').replace('.', '.').replace('*', "'")
-            elif dsep == ',':
-                res = f'{amount:,.2f}'
-                return res.replace(',','*').replace('.', ',').replace('*', "'")
-            else:
-                msg = f"Unknown decimal separator dsep='{dsep}'"
-                raise ValueError(msg)
-                
-        else:
-            raise ValueError("Unknown thousands separator!")
-            
-    else:
-        raise ValueError("Cannot accept type other than int or float!")
-                
+    # 1. Standardize dsep if it's None
+    if dsep is None:
+        dsep = "," if tsep == "." else "."
+
+    # 2. Format with comma as thousands separator and dot as decimal
+    # This handles all the "math" of digit separation.
+    formatted = f"{amount:,f}"
+
+    # 3. Split into integer and fractional parts
+    # Using 'f' in f-string prevents scientific notation (e.g., 1E+2)
+    int_part, frac_part = formatted.split(".")
+
+    # 4. Swap separators
+    # Replace the default comma with a placeholder,
+    # then swap to the user's preferred separators.
+    res_int = int_part.replace(",", tsep)
+
+    return f"{res_int}{dsep}{frac_part}"

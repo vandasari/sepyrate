@@ -96,3 +96,21 @@ In your Django template (e.g., `project_detail.html`)
 ```html
 <p>Total Budget: {{ project.budget_display }}</p>
 ```
+
+## Changelog / Version History
+
+### [1.1.0] - 2026-02-27
+
+**Added**
+
+- Core `digit_separation` function support for `numpy32`, `numpy64`, and `Decimal`.
+
+**Changed**
+
+- Internal logic for type conversion to improve precision.
+
+- Fixed a `TypeError` when passing `Decimal` objects with zero exponents.
+
+### [0.1.0] - 2024-07-08
+
+- Initial release of **Sepyrate**.

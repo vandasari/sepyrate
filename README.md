@@ -66,12 +66,7 @@ value = 10000000
 
 # Grouping by space without decimals
 print(digit_separation(value, tsep=' '))            # Output: '10 000 000'
-
-# Space thousands separator with a comma decimal
-print(digit_separation(value, tsep=' ', dsep=','))  # Output: '10 000 000,00'
-
-# Space thousands separator with a dot decimal
-print(digit_separation(value, tsep=' ', dsep='.'))  # Output: '10 000 000.00'
+print(digit_separation(value, tsep='.'))            # Output: '10.000.000'
 ```
 
 ### Django Usage

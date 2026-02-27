@@ -2,21 +2,23 @@ from decimal import Decimal
 
 
 def digit_separation(amount, tsep, dsep=None):
-    # 1. Standardize dsep if it's None
+    # 1. Ensure it's a Decimal
+    if not isinstance(amount, Decimal):
+        amount = Decimal(str(amount))
+
+    # 2. Standardize dsep if it's None
     if dsep is None:
         dsep = "," if tsep == "." else "."
 
-    # 2. Format with comma as thousands separator and dot as decimal
+    # 3. Format with comma as thousands separator and dot as decimal
     # This handles all the "math" of digit separation.
     formatted = f"{amount:,f}"
 
-    # 3. Split into integer and fractional parts
-    # Using 'f' in f-string prevents scientific notation (e.g., 1E+2)
-    int_part, frac_part = formatted.split(".")
-
-    # 4. Swap separators
-    # Replace the default comma with a placeholder,
-    # then swap to the user's preferred separators.
-    res_int = int_part.replace(",", tsep)
-
-    return f"{res_int}{dsep}{frac_part}"
+    # 4. Handle the split and swap
+    if "." in formatted:
+        int_part, frac_part = formatted.split(".")
+        # Replace default comma with user's tsep
+        return f"{int_part.replace(',', tsep)}{dsep}{frac_part}"
+    else:
+        # It's an integer
+        return formatted.replace(",", tsep)
